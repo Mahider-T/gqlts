@@ -2,7 +2,6 @@ interface Book{
     id: string;
     title: string;
     store: Array<string>;
-
 }
 
 type Author = {
@@ -18,6 +17,11 @@ interface Review {
     content: string;
     author_id: string;
     book_id: string;
+}
+
+interface UpdatedBook{
+    title: string;
+    store: Array<string>;
 }
 
 
@@ -51,4 +55,12 @@ export function deleteBook(id: string) {
 
 export function addBook(book : Book) {
     books.push(book)
+}
+export function updateBook(updatedBook: UpdatedBook, id: String){
+    books = books.map((book) => {
+        if(book.id === id) {
+            return {...book, ...updatedBook }
+        }
+        return book;
+    })
 }

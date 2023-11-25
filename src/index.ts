@@ -3,7 +3,7 @@ import {startStandaloneServer} from "@apollo/server/standalone";
 
 import { typeDefs } from "./schema.js";
 
-import { books, authors, reviews, deleteBook, addBook } from "./_db.js"; 
+import { books, authors, reviews, deleteBook, addBook, updateBook } from "./_db.js"; 
 
 // console.log(books)
 const resolvers = {
@@ -60,6 +60,10 @@ const resolvers = {
         }
         addBook(newBook);
         return books;
+    },
+    updateBook(_, args){
+        updateBook(args.edit, args.id)
+        return books
     }
    },
    
