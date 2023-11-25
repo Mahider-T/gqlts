@@ -3,7 +3,7 @@ import {startStandaloneServer} from "@apollo/server/standalone";
 
 import { typeDefs } from "./schema.js";
 
-import { books, authors, reviews } from "./_db.js"; 
+import { books, authors, reviews, deleteBook, addBook } from "./_db.js"; 
 
 // console.log(books)
 const resolvers = {
@@ -46,7 +46,23 @@ const resolvers = {
        book(parent){
            return books.find((oneBook) => oneBook.id === parent.book_id);
        }
-   }
+   },
+   Mutation: {
+    deleteBook(_, args) {
+        // books = books.filter((oneBook) => oneBook.id != args.id)
+        deleteBook(args.id);
+        return books;
+    },
+    addBook(_, args){
+        let newBook = {
+            ...args.theBook,
+            id: Math.floor(Math.random() * 10000) + 1
+        }
+        addBook(newBook);
+        return books;
+    }
+   },
+   
 }
 // 
 const server = new ApolloServer({

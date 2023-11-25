@@ -18,11 +18,10 @@ interface Review {
     content: string;
     author_id: string;
     book_id: string;
-
 }
 
 
-export const books : Book[] = [
+export let books : Book[] = [
     {id: '1', title: 'Zelda, Tears of the Kingdom', store: ['Switch']},
     {id: '2', title: 'Final Fantasy 7 Remake', store: ['PS5', 'Xbox']},
     {id: '3', title: 'Elden Ring', store: ['PS5', 'Xbox', 'PC']},
@@ -45,3 +44,11 @@ export const reviews: Review[] = [
     {id: '6', rating: 7, content: 'lorem ipsum', author_id: '1', book_id: '2'},
     {id: '7', rating: 10, content: 'lorem ipsum', author_id: '3', book_id: '1'},
   ]
+
+export function deleteBook(id: string) {
+    books = books.filter((oneBook) => oneBook.id != id)
+}
+
+export function addBook(book : Book) {
+    books.push(book)
+}

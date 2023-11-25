@@ -28,4 +28,12 @@ export const typeDefs = `#graphql
         reviews: [Review] 
         review(id: ID!): Review 
     }
+    type Mutation{
+        deleteBook(id: ID): [Book!] 
+        addBook(theBook: AddBookInput) : [Book!]
+    }
+    input AddBookInput{
+        title: String,
+        store: [String!]!
+    }
 `
